@@ -2,16 +2,19 @@ let {Line} = require('./line')
 class Part {
   createPart(data) {
     let lines = []
-    data.lines.forEach(line=>{
+    data.lines.forEach((line, index)=>{
       let tmp = new Line()
-      lines.push(tmp.createLine(line))
+      lines.push({
+        chords: tmp.createLine(line)
+      })
     })
+
     return {
       name: data.name,
       active: data.active,
       from: data.from,
       to: data.to,
-      // lines: lines
+      lines: lines
     }
 
   }
